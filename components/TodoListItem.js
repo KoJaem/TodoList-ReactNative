@@ -2,7 +2,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-
 const TodoListItem = ({textValue, id, checked, onRemove, onToggle}) => {
   return (
     <View style={styles.container}>
