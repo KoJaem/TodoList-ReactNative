@@ -3,15 +3,12 @@ import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import TodoInsert from './components/TodoInsert';
 import TodoList from './components/TodoList';
 import styled from 'styled-components/native';
-import Toast from 'react-native-easy-toast';
 import {Dimensions} from 'react-native';
 
 const App = () => {
   const windowHeight = Dimensions.get('window').height;
   const [todos, setTodos] = useState([]);
-  const toastRef = useRef();
   const onRemove = id => {
-    toastRef.current.show('삭제 되었습니다.');
     setTodos(todos.filter(todo => todo.id !== id));
   };
   const addTodo = text => {
@@ -38,15 +35,6 @@ const App = () => {
         <TodoInsert onAddTodo={addTodo} />
         <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
       </View>
-      <StyleToast
-        ref={toastRef}
-        positionValue={windowHeight * 0.25}
-        // position={'bottom'}
-        fadeInDuration={1000} // 들어오는 시간
-        fadeOutDuration={2000} // 나가는 시간
-        opacity={0.8}
-        // textStyle={{color: 'black'}}
-      />
     </Container>
   );
 };
@@ -95,8 +83,5 @@ const Container = styled(SafeAreaView)`
   background-color: '#3143e8';
 `;
 
-const StyleToast = styled(Toast)`
-  background-color: #a1b3f0;
-`;
 
 export default App;
