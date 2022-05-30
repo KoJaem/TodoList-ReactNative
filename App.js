@@ -1,15 +1,27 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
 import TodoInsert from './components/TodoInsert';
 import TodoList from './components/TodoList';
 import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
+import Toast from 'react-native-toast-message';
 
 const App = () => {
   const windowHeight = Dimensions.get('window').height;
   const [todos, setTodos] = useState([]);
-  const onRemove = id => {
+  const showToast = (title, message) => {
+    Toast.show({
+      type: 'success',
+      text1: title,
+      text2: message,
+      position: 'bottom',
+      bottomOffset: windowHeight * 0.12,
+      visibilityTime: 2000,
+    });
+  };
+  const onRemove = (id, title, message) => {
     setTodos(todos.filter(todo => todo.id !== id));
+    showToast(title, message);
   };
   const addTodo = text => {
     setTodos([
@@ -35,6 +47,7 @@ const App = () => {
         <TodoInsert onAddTodo={addTodo} />
         <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
       </View>
+      <Toast />
     </Container>
   );
 };
@@ -82,6 +95,5 @@ const Container = styled(SafeAreaView)`
   flex: 1;
   background-color: '#3143e8';
 `;
-
 
 export default App;

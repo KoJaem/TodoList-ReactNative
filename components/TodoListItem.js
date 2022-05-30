@@ -18,7 +18,9 @@ const TodoListItem = ({textValue, id, checked, onRemove, onToggle}) => {
         {textValue}
       </Text>
       <TouchableOpacity style={styles.buttonContainer}>
-        <Text style={styles.buttonText} onPress={() => onRemove(id)}>
+        <Text
+          style={styles.buttonText}
+          onPress={() => onRemove(id, '삭제 성공', `${id} 게시글 삭제완료`)}>
           <Icon name="delete" size={30} color="#e33057" />
         </Text>
       </TouchableOpacity>
