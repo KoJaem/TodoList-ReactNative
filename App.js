@@ -5,13 +5,14 @@ import TodoList from './components/TodoList';
 import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 import Toast from 'react-native-toast-message';
+import {toastConfig} from './config/toastConfig';
 
 const App = () => {
   const windowHeight = Dimensions.get('window').height;
   const [todos, setTodos] = useState([]);
   const showToast = (title, message) => {
     Toast.show({
-      type: 'success',
+      type: 'tomatoToast',
       text1: title,
       text2: message,
       position: 'bottom',
@@ -47,7 +48,7 @@ const App = () => {
         <TodoInsert onAddTodo={addTodo} />
         <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
       </View>
-      <Toast />
+      <Toast config={toastConfig} />
     </Container>
   );
 };
