@@ -6,7 +6,7 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from './config/toastConfig';
-
+import {shuffle} from './utils/shuffle';
 const App = () => {
   const windowHeight = Dimensions.get('window').height;
   const [todos, setTodos] = useState([]);
@@ -40,12 +40,16 @@ const App = () => {
     );
   };
 
+  const onShuffle = () => {
+    setTodos(shuffle(todos));
+  };
+
   return (
     // <Container>
     <Container style={styles.container}>
       <Text style={styles.appTitle}>Hello TodoList!</Text>
       <View style={styles.card}>
-        <TodoInsert onAddTodo={addTodo} />
+        <TodoInsert onAddTodo={addTodo} onShuffle={onShuffle} />
         <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
       </View>
       <Toast config={toastConfig} />

@@ -2,8 +2,10 @@
 import React from 'react';
 import {Button, StyleSheet, TextInput, View} from 'react-native';
 import {useState} from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {TouchableOpacity} from 'react-native';
 
-const TodoInsert = ({onAddTodo}) => {
+const TodoInsert = ({onAddTodo, onShuffle}) => {
   const [newTodoItem, setNewTodoItem] = useState('');
   const todoInputHandler = newTodo => {
     setNewTodoItem(newTodo);
@@ -25,6 +27,9 @@ const TodoInsert = ({onAddTodo}) => {
       <View style={styles.button}>
         <Button title={'ADD'} onPress={addTodoHandler} />
       </View>
+      <TouchableOpacity onPress={() => onShuffle()}>
+        <Icon name="random" size={30} color="#3143e8" />
+      </TouchableOpacity>
     </View>
   );
 };
